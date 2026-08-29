@@ -14,6 +14,9 @@ Requires Python 3.11+.
 ```bash
 make install
 cp .env.example .env
+set -a
+source .env
+set +a
 make run
 ```
 

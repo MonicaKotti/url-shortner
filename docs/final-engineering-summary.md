@@ -9,6 +9,7 @@ The orchestration layer combines declarative configuration with deterministic en
 ## Artifacts
 
 - Runnable URL-shortener application and container definition
+- Responsive Signal Desk web interface for public shortening and operator analytics
 - Versioned REST API and static OpenAPI schema
 - Unit and API integration tests
 - Eight specialist Codex agent definitions
@@ -44,7 +45,8 @@ The local persistence, cache, rate limiter, and workflow ledger are single-node 
 
 ## Limitations
 
-- No consumer UI is included; Swagger UI and run artifacts are the review interfaces.
+- The Signal Desk consumer/operator UI is included; Swagger UI and run artifacts remain the API and workflow
+  review interfaces.
 - No production deployment, email, ticket, or other external side effect is performed.
 - Demo agent outputs are deterministic fixtures exercising the state machine. Actual delegated review evidence is
   summarized in `docs/independent-agent-reviews.md`; the fixtures are not presented as agent-authorship proof.
