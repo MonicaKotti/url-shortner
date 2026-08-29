@@ -1,0 +1,17 @@
+{
+  "artifacts": [
+    "runs/ambiguous-popular-links/events.jsonl"
+  ],
+  "assumptions": [],
+  "decisions": [
+    "Raised material questions for popularity threshold, latency target, and disable propagation."
+  ],
+  "evidence": [
+    "pytest: exit=0; 13 passed",
+    "ruff: exit=0; all checks passed"
+  ],
+  "git_commit": null,
+  "risks": [],
+  "status": "completed",
+  "summary": "Raised material questions for popularity threshold, latency target, and disable propagation."
+}

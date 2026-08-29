@@ -1,0 +1,17 @@
+{
+  "artifacts": [
+    "tests/test_api.py"
+  ],
+  "assumptions": [],
+  "decisions": [
+    "Required nullable expiration, HTTP 410, cache invalidation, and unchanged legacy-link behavior."
+  ],
+  "evidence": [
+    "pytest: exit=0; 13 passed",
+    "ruff: exit=0; all checks passed"
+  ],
+  "git_commit": null,
+  "risks": [],
+  "status": "completed",
+  "summary": "Required nullable expiration, HTTP 410, cache invalidation, and unchanged legacy-link behavior."
+}

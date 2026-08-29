@@ -27,7 +27,8 @@ Only completed dependencies satisfy a node. A conditional dependency that does n
 
 - Entry gates validate that required upstream inputs exist.
 - Exit gates validate structured evidence, not agent confidence.
-- Human gates record actor, decision, timestamp, comment, and the artifact hashes being approved.
+- Human gates permit only the YAML-declared roles and record role, actor, decision, timestamp, comment, and the
+  artifact hashes being approved. Local role claims assume a trusted operator; production requires federated identity.
 - Rejection triggers safe stop unless an approved fallback route exists.
 
 ## Retry rules
@@ -40,11 +41,13 @@ Only completed dependencies satisfy a node. A conditional dependency that does n
 
 ## Replanning rules
 
-Hash each node's effective inputs. When an upstream output changes, find every descendant, preserve its old output as superseded, and set it to `invalidated`. Re-run only the affected subgraph after required approvals are renewed.
+Record upstream output hashes as effective-input lineage. When an upstream output changes, find every descendant,
+preserve its old attempt count and artifacts as superseded, reset its retry budget, and set it to `invalidated`.
+Re-run only the affected subgraph after required approvals are renewed.
 
 ## Recovery rules
 
-- Code changes: discard the isolated branch/worktree or revert a known commit.
+- Code changes: discard the isolated branch/worktree or revert a known commit, then provide observable verification.
 - Database changes: use an approved down or compensating migration.
 - Deployment: redeploy a known-good immutable manifest.
 - Irreversible external effects: stop and escalate; never claim rollback.

@@ -1,0 +1,14 @@
+{
+  "end_to_end_latency_seconds": 0.052,
+  "mttr_seconds": null,
+  "node_attempts": 13,
+  "replan_count": 1,
+  "retry_count": 0,
+  "retry_frequency": 0.0,
+  "rollback_count": 0,
+  "rollback_frequency": 0.0,
+  "run_id": "ambiguous-popular-links",
+  "safe_stop_count": 0,
+  "status": "completed",
+  "successful": true
+}

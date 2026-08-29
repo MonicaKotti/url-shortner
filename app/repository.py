@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import sqlite3
 from collections.abc import Iterable
+from urllib.parse import urlsplit
 
 from app.database import Database
 from app.errors import LinkNotFound
@@ -62,10 +63,16 @@ class LinkRepository:
             return False
 
     def record_click(self, code: str, referrer: str, user_agent: str, ip_hash: str) -> None:
+        normalized_referrer = ""
+        if referrer:
+            parsed = urlsplit(referrer)
+            if parsed.scheme in {"http", "https"} and parsed.netloc:
+                normalized_referrer = f"{parsed.scheme}://{parsed.netloc}/"
+        user_agent_family = user_agent.split("/", maxsplit=1)[0][:80]
         with self.database.connection() as connection:
             connection.execute(
                 "INSERT INTO clicks(code,occurred_at,referrer,user_agent,ip_hash) VALUES(?,?,?,?,?)",
-                (code, iso_now(), referrer[:500], user_agent[:500], ip_hash),
+                (code, iso_now(), normalized_referrer, user_agent_family, ip_hash),
             )
             connection.execute("UPDATE links SET click_count=click_count+1 WHERE code=?", (code,))
 

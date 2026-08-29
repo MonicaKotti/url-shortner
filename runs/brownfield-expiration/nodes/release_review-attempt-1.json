@@ -1,0 +1,16 @@
+{
+  "artifacts": [
+    "README.md",
+    "docs/testing-and-tradeoffs.md"
+  ],
+  "assumptions": [],
+  "decisions": [],
+  "evidence": [
+    "pytest: exit=0; 13 passed",
+    "ruff: exit=0; all checks passed"
+  ],
+  "git_commit": null,
+  "risks": [],
+  "status": "completed",
+  "summary": "Found release evidence complete with documented residual scaling limitations."
+}

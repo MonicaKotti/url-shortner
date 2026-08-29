@@ -1,0 +1,59 @@
+{
+  "mean_end_to_end_latency_seconds": 0.049,
+  "mean_time_to_recovery_seconds": 0.003,
+  "node_attempts": 37,
+  "replan_count": 1,
+  "retry_count": 1,
+  "retry_frequency": 0.027,
+  "rollback_count": 0,
+  "rollback_frequency": 0.0,
+  "runs": [
+    {
+      "end_to_end_latency_seconds": 0.052,
+      "mttr_seconds": null,
+      "node_attempts": 13,
+      "replan_count": 1,
+      "retry_count": 0,
+      "retry_frequency": 0.0,
+      "rollback_count": 0,
+      "rollback_frequency": 0.0,
+      "run_id": "ambiguous-popular-links",
+      "safe_stop_count": 0,
+      "status": "completed",
+      "successful": true
+    },
+    {
+      "end_to_end_latency_seconds": 0.05,
+      "mttr_seconds": 0.003,
+      "node_attempts": 13,
+      "replan_count": 0,
+      "retry_count": 1,
+      "retry_frequency": 0.0769,
+      "rollback_count": 0,
+      "rollback_frequency": 0.0,
+      "run_id": "brownfield-expiration",
+      "safe_stop_count": 0,
+      "status": "completed",
+      "successful": true
+    },
+    {
+      "end_to_end_latency_seconds": 0.044,
+      "mttr_seconds": null,
+      "node_attempts": 11,
+      "replan_count": 0,
+      "retry_count": 0,
+      "retry_frequency": 0.0,
+      "rollback_count": 0,
+      "rollback_frequency": 0.0,
+      "run_id": "greenfield-core-service",
+      "safe_stop_count": 0,
+      "status": "completed",
+      "successful": true
+    }
+  ],
+  "safe_stop_count": 0,
+  "safe_stop_frequency": 0.0,
+  "success_rate": 1.0,
+  "terminal_runs": 3,
+  "total_runs": 3
+}

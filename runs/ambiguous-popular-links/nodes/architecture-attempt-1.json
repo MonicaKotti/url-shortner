@@ -1,0 +1,22 @@
+{
+  "artifacts": [
+    "app/cache.py",
+    "app/service.py"
+  ],
+  "assumptions": [
+    "The local prototype runs as one application instance"
+  ],
+  "decisions": [
+    "Designed a bounded 30-second read-through cache with immediate local invalidation."
+  ],
+  "evidence": [
+    "pytest: exit=0; 13 passed",
+    "ruff: exit=0; all checks passed"
+  ],
+  "git_commit": null,
+  "risks": [
+    "SQLite and the in-process cache require replacement for horizontal scale"
+  ],
+  "status": "completed",
+  "summary": "Designed a bounded 30-second read-through cache with immediate local invalidation."
+}

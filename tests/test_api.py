@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from datetime import timedelta
 
+import pytest
 from fastapi.testclient import TestClient
 
 from app.config import Settings
@@ -97,3 +98,10 @@ def test_rate_limit_is_enforced(tmp_path) -> None:
     with TestClient(create_app(settings)) as limited:
         assert limited.post("/api/v1/links", json={"url": "https://example.com/one"}).status_code == 201
         assert limited.post("/api/v1/links", json={"url": "https://example.com/two"}).status_code == 429
+
+
+def test_production_rejects_known_or_short_analytics_salts() -> None:
+    for salt in ("development-only-salt", "short"):
+        settings = Settings(app_env="production", admin_api_key="production-admin", analytics_salt=salt)
+        with pytest.raises(RuntimeError, match="ANALYTICS_SALT"):
+            settings.validate()

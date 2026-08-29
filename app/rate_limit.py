@@ -17,6 +17,12 @@ class SlidingWindowRateLimiter:
         current = time.monotonic()
         cutoff = current - 60
         with self._lock:
+            for stale_key in list(self._events):
+                stale_events = self._events[stale_key]
+                while stale_events and stale_events[0] <= cutoff:
+                    stale_events.popleft()
+                if not stale_events:
+                    del self._events[stale_key]
             events = self._events[key]
             while events and events[0] <= cutoff:
                 events.popleft()

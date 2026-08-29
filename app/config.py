@@ -30,7 +30,8 @@ class Settings:
     def validate(self) -> None:
         if self.app_env == "production" and self.admin_api_key.startswith("change-me"):
             raise RuntimeError("ADMIN_API_KEY must be changed in production")
-        if self.app_env == "production" and self.analytics_salt.startswith("change-me"):
+        insecure_salts = {"change-me", "development-only-salt"}
+        if self.app_env == "production" and (self.analytics_salt in insecure_salts or len(self.analytics_salt) < 32):
             raise RuntimeError("ANALYTICS_SALT must be changed in production")
         if self.rate_limit_per_minute < 1:
             raise RuntimeError("RATE_LIMIT_PER_MINUTE must be positive")

@@ -1,0 +1,15 @@
+{
+  "artifacts": [
+    "docs/final-engineering-summary.md"
+  ],
+  "assumptions": [],
+  "decisions": [],
+  "evidence": [
+    "pytest: exit=0; 13 passed",
+    "ruff: exit=0; all checks passed"
+  ],
+  "git_commit": null,
+  "risks": [],
+  "status": "completed",
+  "summary": "Produced the governed engineering summary and retained decision lineage."
+}

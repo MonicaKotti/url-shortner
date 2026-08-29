@@ -1,0 +1,15 @@
+{
+  "artifacts": [
+    "tests/"
+  ],
+  "assumptions": [],
+  "decisions": [],
+  "evidence": [
+    "pytest: exit=0; 13 passed",
+    "ruff: exit=0; all checks passed"
+  ],
+  "git_commit": null,
+  "risks": [],
+  "status": "failed",
+  "summary": "Transient test runner process exited before producing results."
+}

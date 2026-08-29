@@ -11,12 +11,14 @@ nodes:
     agent: requirements_analyst
     depends_on: [intake]
     exit_gate: acceptance_criteria_testable
+    fallback: request_human_clarification
     max_attempts: 2
   clarification:
     agent: human
     depends_on: [requirements]
     condition: material_ambiguity_present
     approval: required
+    authorized_roles: [owner, reviewer]
     exit_gate: material_ambiguity_resolved
     max_attempts: 1
   codebase_impact:
@@ -34,6 +36,7 @@ nodes:
     agent: human
     depends_on: [architecture]
     approval: required
+    authorized_roles: [reviewer]
     risk: high
     exit_gate: explicit_approval_recorded
     max_attempts: 1
@@ -42,11 +45,13 @@ nodes:
     depends_on: [design_approval]
     exit_gate: diff_and_focused_checks_present
     rollback: discard_isolated_worktree_or_revert_commit
+    fallback: safe_stop_and_preserve_branch
     max_attempts: 2
   test_review:
     agent: test_reviewer
     depends_on: [implementation]
     exit_gate: required_tests_pass
+    fallback: rollback_implementation_and_replan
     max_attempts: 2
   security_review:
     agent: security_reviewer
@@ -67,6 +72,7 @@ nodes:
     agent: human
     depends_on: [release_review]
     approval: required
+    authorized_roles: [release-manager]
     risk: high
     exit_gate: explicit_approval_recorded
     max_attempts: 1
@@ -75,4 +81,3 @@ nodes:
     depends_on: [release_approval]
     exit_gate: final_summary_complete
     max_attempts: 1
-

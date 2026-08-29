@@ -1,0 +1,21 @@
+{
+  "artifacts": [
+    "docs/architecture.md"
+  ],
+  "assumptions": [
+    "The local prototype runs as one application instance"
+  ],
+  "decisions": [
+    "Selected FastAPI, repository boundaries, SQLite WAL, read-through cache, and Git-isolated agent changes."
+  ],
+  "evidence": [
+    "pytest: exit=0; 13 passed",
+    "ruff: exit=0; all checks passed"
+  ],
+  "git_commit": null,
+  "risks": [
+    "SQLite and the in-process cache require replacement for horizontal scale"
+  ],
+  "status": "completed",
+  "summary": "Selected FastAPI, repository boundaries, SQLite WAL, read-through cache, and Git-isolated agent changes."
+}

@@ -1,0 +1,15 @@
+{
+  "artifacts": [
+    "app/service.py"
+  ],
+  "assumptions": [],
+  "decisions": [],
+  "evidence": [
+    "pytest: exit=0; 13 passed",
+    "ruff: exit=0; all checks passed"
+  ],
+  "git_commit": null,
+  "risks": [],
+  "status": "completed",
+  "summary": "Normalized backwards-compatible expiration and administrative disablement behavior."
+}

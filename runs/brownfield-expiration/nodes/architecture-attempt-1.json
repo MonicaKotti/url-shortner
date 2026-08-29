@@ -1,0 +1,21 @@
+{
+  "artifacts": [
+    "docs/architecture.md"
+  ],
+  "assumptions": [
+    "The local prototype runs as one application instance"
+  ],
+  "decisions": [
+    "Chose nullable UTC expiration and synchronous cache invalidation with no destructive migration."
+  ],
+  "evidence": [
+    "pytest: exit=0; 13 passed",
+    "ruff: exit=0; all checks passed"
+  ],
+  "git_commit": null,
+  "risks": [
+    "SQLite and the in-process cache require replacement for horizontal scale"
+  ],
+  "status": "completed",
+  "summary": "Chose nullable UTC expiration and synchronous cache invalidation with no destructive migration."
+}
