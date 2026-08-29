@@ -1,10 +1,10 @@
 {
-  "mean_end_to_end_latency_seconds": 0.049,
+  "mean_end_to_end_latency_seconds": 2850.84,
   "mean_time_to_recovery_seconds": 0.003,
-  "node_attempts": 37,
+  "node_attempts": 49,
   "replan_count": 1,
   "retry_count": 1,
-  "retry_frequency": 0.027,
+  "retry_frequency": 0.0204,
   "rollback_count": 0,
   "rollback_frequency": 0.0,
   "runs": [
@@ -18,6 +18,20 @@
       "rollback_count": 0,
       "rollback_frequency": 0.0,
       "run_id": "ambiguous-popular-links",
+      "safe_stop_count": 0,
+      "status": "completed",
+      "successful": true
+    },
+    {
+      "end_to_end_latency_seconds": 11403.214,
+      "mttr_seconds": null,
+      "node_attempts": 12,
+      "replan_count": 0,
+      "retry_count": 0,
+      "retry_frequency": 0.0,
+      "rollback_count": 0,
+      "rollback_frequency": 0.0,
+      "run_id": "bitly-inspired-ui",
       "safe_stop_count": 0,
       "status": "completed",
       "successful": true
@@ -54,6 +68,6 @@
   "safe_stop_count": 0,
   "safe_stop_frequency": 0.0,
   "success_rate": 1.0,
-  "terminal_runs": 3,
-  "total_runs": 3
+  "terminal_runs": 4,
+  "total_runs": 4
 }

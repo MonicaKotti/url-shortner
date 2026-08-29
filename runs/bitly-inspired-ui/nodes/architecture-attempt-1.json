@@ -1,0 +1,34 @@
+{
+  "artifacts": [
+    "docs/ui-requirement.md",
+    "app/main.py",
+    "tests/test_api.py",
+    "pyproject.toml"
+  ],
+  "assumptions": [
+    "UI and API share one origin",
+    "Modern evergreen browsers are supported",
+    "No database migration is required"
+  ],
+  "decisions": [
+    "Use an original midnight-indigo, parchment, coral, and lime visual system named Signal Desk",
+    "Create semantic public and operator workspaces in one page",
+    "Render API strings with textContent and validate all href protocols",
+    "Serve / and /_assets before /{code}",
+    "Use mobile-first breakpoints at 720px and 1040px",
+    "Apply restrictive CSP only to the application shell",
+    "Rollback by reverting the single UI commit and re-running API/UI checks"
+  ],
+  "evidence": [
+    "Design specifies exact files/routes, state transitions, CSP, DOM-safety rules, breakpoints, tests, and rollback verification",
+    "Existing API already supplies every required operation without contract changes"
+  ],
+  "git_commit": null,
+  "risks": [
+    "Clipboard fallback varies by browser",
+    "Local admin-key entry is not production identity",
+    "Static assets require package-data verification"
+  ],
+  "status": "completed",
+  "summary": "Designed the additive Signal Desk interface with same-origin data flow, accessible responsive behavior, memory-only operator credentials, and code-only rollback."
+}

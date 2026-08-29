@@ -1,0 +1,239 @@
+{
+  "completed_at": "2026-08-29T23:57:21.831968+00:00",
+  "git_branch_at_start": "codex/bitly-inspired-ui",
+  "git_ref_at_start": "fd76c382fb5eef7afa5d4684fead5609270a1977",
+  "graph_name": "governed-agentic-sdlc",
+  "graph_version": 1,
+  "nodes": {
+    "architecture": {
+      "agent": "architect",
+      "attempts": 1,
+      "depends_on": [
+        "requirements",
+        "clarification",
+        "codebase_impact"
+      ],
+      "execution_count": 1,
+      "exit_gate": "design_and_rollback_defined",
+      "id": "architecture",
+      "input_hash": "77f16a2354acf4c293fe96703573596e6b8ea74205e454236facbce2b2a52e1a",
+      "last_error": null,
+      "max_attempts": 2,
+      "output_hash": "1be2cc48b19a41618afedfad3cf28b26e4f4ff3cc76ad206ecf95d0204510745",
+      "status": "completed"
+    },
+    "clarification": {
+      "agent": "human",
+      "approval": "required",
+      "attempts": 0,
+      "authorized_roles": [
+        "owner",
+        "reviewer"
+      ],
+      "condition": "material_ambiguity_present",
+      "depends_on": [
+        "requirements"
+      ],
+      "execution_count": 0,
+      "exit_gate": "material_ambiguity_resolved",
+      "id": "clarification",
+      "last_error": null,
+      "max_attempts": 1,
+      "output_hash": null,
+      "status": "skipped"
+    },
+    "codebase_impact": {
+      "agent": "codebase_explorer",
+      "attempts": 1,
+      "condition": "brownfield",
+      "depends_on": [
+        "requirements",
+        "clarification"
+      ],
+      "execution_count": 1,
+      "exit_gate": "impacted_paths_evidenced",
+      "id": "codebase_impact",
+      "input_hash": "ef4a87c62a24ef65e95df8285e5da854c8439c2327461a888b268832b10eb3d2",
+      "last_error": null,
+      "max_attempts": 1,
+      "output_hash": "25448f1900f6490459d71d45c6262d2bacc7ca0d8ad8f68180cd496af04abbb3",
+      "status": "completed"
+    },
+    "design_approval": {
+      "agent": "human",
+      "approval": "required",
+      "attempts": 1,
+      "authorized_roles": [
+        "reviewer"
+      ],
+      "depends_on": [
+        "architecture"
+      ],
+      "execution_count": 1,
+      "exit_gate": "explicit_approval_recorded",
+      "id": "design_approval",
+      "last_error": null,
+      "max_attempts": 1,
+      "output_hash": "fbc2b0d09d37e9122669fe42f918be4fcf4e6477816ad525815c04490e297d75",
+      "risk": "high",
+      "status": "completed"
+    },
+    "documentation_review": {
+      "agent": "documentation_reviewer",
+      "attempts": 1,
+      "depends_on": [
+        "implementation"
+      ],
+      "execution_count": 1,
+      "exit_gate": "public_behavior_documented",
+      "id": "documentation_review",
+      "input_hash": "877a0fca3550d61c619d8dab58e592a254ee4b8b83b8f5d0f13b3a12d33eefa1",
+      "last_error": null,
+      "max_attempts": 1,
+      "output_hash": "75cf3ac87ac0f40a274985e3f83865aec1e053a3a98ee2df713ae96877110a26",
+      "status": "completed"
+    },
+    "final_summary": {
+      "agent": "release_reviewer",
+      "attempts": 1,
+      "depends_on": [
+        "release_approval"
+      ],
+      "execution_count": 1,
+      "exit_gate": "final_summary_complete",
+      "id": "final_summary",
+      "input_hash": "f4eae4817fade95c6c30612d4c17b12b741d258fec542a65b5c7fdc2a4d0acad",
+      "last_error": null,
+      "max_attempts": 1,
+      "output_hash": "b04ccd65340fec0d56434dfd2a1a26cb8153121dc6ce38ab8cb3f756d20262cd",
+      "status": "completed"
+    },
+    "implementation": {
+      "agent": "implementer",
+      "attempts": 1,
+      "depends_on": [
+        "design_approval"
+      ],
+      "execution_count": 1,
+      "exit_gate": "diff_and_focused_checks_present",
+      "fallback": "safe_stop_and_preserve_branch",
+      "id": "implementation",
+      "input_hash": "a65b8aeb0a491acfc7b2caa611ffea086b6dae673457ce778628a23461880cf6",
+      "last_error": null,
+      "max_attempts": 2,
+      "output_hash": "d6c109477b623cca4e7c7c967265580c8cc5c3dbb13e3848386202e1b8484a2f",
+      "rollback": "discard_isolated_worktree_or_revert_commit",
+      "status": "completed"
+    },
+    "intake": {
+      "agent": "requirements_analyst",
+      "attempts": 1,
+      "depends_on": [],
+      "entry_gate": "requirement_present",
+      "execution_count": 1,
+      "exit_gate": "normalized_problem_present",
+      "id": "intake",
+      "input_hash": "f57e2c333515c60cda4bdb32e2cc5e718c90d8a3df25b3882fa76a34e40855d0",
+      "last_error": null,
+      "max_attempts": 1,
+      "output_hash": "7f7aedeacafd3ce7e14275657b051075d9b08a7f47e6269b2e2e7108223a0b12",
+      "status": "completed"
+    },
+    "release_approval": {
+      "agent": "human",
+      "approval": "required",
+      "attempts": 1,
+      "authorized_roles": [
+        "release-manager"
+      ],
+      "depends_on": [
+        "release_review"
+      ],
+      "execution_count": 1,
+      "exit_gate": "explicit_approval_recorded",
+      "id": "release_approval",
+      "last_error": null,
+      "max_attempts": 1,
+      "output_hash": "2ba0233d5041b8a10b1f2d02ef44595b9663aeeabad4c7422fb0bc947e25f031",
+      "risk": "high",
+      "status": "completed"
+    },
+    "release_review": {
+      "agent": "release_reviewer",
+      "attempts": 1,
+      "depends_on": [
+        "test_review",
+        "security_review",
+        "documentation_review"
+      ],
+      "execution_count": 1,
+      "exit_gate": "release_evidence_complete",
+      "id": "release_review",
+      "input_hash": "ced97838d12eb5d8d672c46abe2c75ea60d541658c783ff2ce3f709b612cd7ea",
+      "last_error": null,
+      "max_attempts": 1,
+      "output_hash": "610803a04e084428587fc3421898175aa39f7e2abd8c5ce4e4631e10f186fcc8",
+      "status": "completed"
+    },
+    "requirements": {
+      "agent": "requirements_analyst",
+      "attempts": 1,
+      "depends_on": [
+        "intake"
+      ],
+      "execution_count": 1,
+      "exit_gate": "acceptance_criteria_testable",
+      "fallback": "request_human_clarification",
+      "id": "requirements",
+      "input_hash": "66b5ea48d7d63c11f5eaa7a2ff0ead8267176fe5f0de81ecbb1ceea3132d68ec",
+      "last_error": null,
+      "max_attempts": 2,
+      "output_hash": "76819f0c688453ff456a47bdd578f015436685629ed521806e390dfe94ee997a",
+      "status": "completed"
+    },
+    "security_review": {
+      "agent": "security_reviewer",
+      "attempts": 1,
+      "depends_on": [
+        "implementation"
+      ],
+      "execution_count": 1,
+      "exit_gate": "no_unaccepted_high_severity_findings",
+      "id": "security_review",
+      "input_hash": "877a0fca3550d61c619d8dab58e592a254ee4b8b83b8f5d0f13b3a12d33eefa1",
+      "last_error": null,
+      "max_attempts": 1,
+      "output_hash": "3218676e48b89eb34e7aafaaa4b5bf690753c7a2795f4220540a27a68ab0188d",
+      "status": "completed"
+    },
+    "test_review": {
+      "agent": "test_reviewer",
+      "attempts": 1,
+      "depends_on": [
+        "implementation"
+      ],
+      "execution_count": 1,
+      "exit_gate": "required_tests_pass",
+      "fallback": "rollback_implementation_and_replan",
+      "id": "test_review",
+      "input_hash": "877a0fca3550d61c619d8dab58e592a254ee4b8b83b8f5d0f13b3a12d33eefa1",
+      "last_error": null,
+      "max_attempts": 2,
+      "output_hash": "02f6a73c989f560d1139df3833d86bbcfee978e16e35fecd0288f0a511001091",
+      "status": "completed"
+    }
+  },
+  "replan_count": 0,
+  "requirement": "# Bitly-inspired web interface\n\nAdd a responsive, accessible web interface to the existing URL-shortener service. The experience should be\nvisually inspired by the clarity of Bitly and TinyURL without copying protected branding or assets.\n\nUsers must be able to shorten a URL, choose an optional alias and expiration, copy or open the result, and see\nclear validation and failure feedback. An administrative workspace should allow an operator to enter the local\nadmin key, list links, inspect click analytics, and disable links. Preserve the existing JSON API and redirect\nbehavior, add no frontend build dependency, and keep secrets out of persistent browser storage.",
+  "requirement_hash": "64ad30e2882afee7ffaacffbf5499049330a358f3b899e3e15cc2f9acdb654d6",
+  "run_id": "bitly-inspired-ui",
+  "safe_stop_reason": null,
+  "scenario": "brownfield",
+  "started_at": "2026-08-29T20:47:18.618318+00:00",
+  "status": "completed",
+  "traits": [
+    "brownfield"
+  ],
+  "updated_at": "2026-08-29T23:57:21.831972+00:00",
+  "worktree_at_start": "/Users/aditya/Documents/ChatGPT/url-shortener"
+}

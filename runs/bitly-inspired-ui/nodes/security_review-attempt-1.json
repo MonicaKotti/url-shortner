@@ -1,0 +1,33 @@
+{
+  "artifacts": [
+    "app/static/index.html",
+    "app/static/app.js",
+    "app/main.py",
+    "tests/test_ui.py",
+    "tests/test_api.py",
+    "docs/testing-and-tradeoffs.md"
+  ],
+  "assumptions": [
+    "The prototype runs locally or behind trusted TLS termination",
+    "No third-party scripts are introduced"
+  ],
+  "decisions": [
+    "Accepted memory-only bearer admin key for the documented local prototype scope",
+    "Accepted HTTP/HTTPS redirects as intended product behavior"
+  ],
+  "evidence": [
+    "pytest: exit=0; 21 passed",
+    "ruff: exit=0; all checks passed",
+    "Abuse cases for javascript/data/file/credential URLs and unauthorized operations passed",
+    "Static scan found no unsafe HTML sinks or browser storage",
+    "CSP, nosniff, no-referrer, COOP, X-Frame-Options, and permissions policy verified"
+  ],
+  "git_commit": null,
+  "risks": [
+    "MEDIUM: production needs identity-aware authentication, authorization, rotation, and audit attribution",
+    "MEDIUM: public deployment needs distributed abuse protection and moderation",
+    "LOW: Swagger routes intentionally do not receive the UI CSP"
+  ],
+  "status": "completed",
+  "summary": "Security gate passed with no high-severity findings; same-origin CSP, safe DOM construction, URL protocol checks, memory-only admin credentials, authenticated operations, and disable confirmation were verified."
+}

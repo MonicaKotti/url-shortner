@@ -1,0 +1,36 @@
+{
+  "artifacts": [
+    "app/main.py",
+    "app/service.py",
+    "app/schemas.py",
+    "tests/test_api.py",
+    "pyproject.toml",
+    "README.md",
+    "docs/architecture.md"
+  ],
+  "assumptions": [
+    "The UI shares the API origin",
+    "One public/operator page needs no client router"
+  ],
+  "decisions": [
+    "Serve app/static/index.html at / and mount app/static under /_assets",
+    "Resolve assets relative to app/main.py",
+    "Include static assets as setuptools package data",
+    "Apply UI-only CSP and additional browser security headers",
+    "Keep API response shapes unchanged"
+  ],
+  "evidence": [
+    "Route inspection shows exact / and /_assets routes can be registered before /{code}",
+    "The underscore-prefixed asset route cannot collide with valid aliases",
+    "Existing API operations cover create, list, analytics, and disable workflows"
+  ],
+  "git_commit": null,
+  "risks": [
+    "Global CSP could break Swagger",
+    "Unsafe DOM insertion could create XSS",
+    "Static assets need explicit package-data inclusion",
+    "Clipboard access requires a fallback"
+  ],
+  "status": "completed",
+  "summary": "Mapped an additive same-origin UI onto the current API with no schema, service, database, or redirect behavior changes."
+}

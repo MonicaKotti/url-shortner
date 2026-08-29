@@ -1,0 +1,29 @@
+{
+  "artifacts": [
+    "docs/ui-requirement.md",
+    "app/main.py",
+    "app/schemas.py"
+  ],
+  "assumptions": [
+    "The UI and API share one origin",
+    "The operator receives the admin key out of band"
+  ],
+  "decisions": [
+    "Build public and operator workspaces in server-served HTML/CSS/JavaScript",
+    "Generate one idempotency key per intentional create operation",
+    "Require explicit confirmation before disablement",
+    "Use safe DOM text assignment for API-derived values"
+  ],
+  "evidence": [
+    "Acceptance requires keyboard reachability, visible focus, aria-live status, no horizontal page overflow, action-specific loading, safe text rendering, and preserved API tests",
+    "Admin key must remain in page memory only and travel only in X-Admin-Key"
+  ],
+  "git_commit": null,
+  "risks": [
+    "Admin secrets may leak if persisted",
+    "Long URLs and dense analytics require responsive rendering",
+    "The visual language must remain original rather than copying third-party branding"
+  ],
+  "status": "completed",
+  "summary": "Defined testable acceptance criteria for creation, copy/open, responsive behavior, accessibility, loading/error states, admin listing, analytics, and confirmed disablement."
+}

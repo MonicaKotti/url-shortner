@@ -1,0 +1,32 @@
+{
+  "artifacts": [
+    "tests/test_ui.py",
+    "tests/test_api.py",
+    "app/static/index.html",
+    "app/static/app.js",
+    "app/static/styles.css",
+    "pyproject.toml"
+  ],
+  "assumptions": [
+    "Modern evergreen browsers are supported"
+  ],
+  "decisions": [
+    "Accepted the required-tests gate based on independent command results and packaged-runtime smoke testing"
+  ],
+  "evidence": [
+    "ruff: exit=0; all checks passed",
+    "pytest: exit=0; 21 passed",
+    "coverage: 92% total; app/main.py 98%",
+    "node --check app/static/app.js: exit=0",
+    "pip wheel: exit=0; all three static assets included",
+    "extracted-wheel TestClient: GET / and /_assets/app.js returned 200"
+  ],
+  "git_commit": null,
+  "risks": [
+    "Frontend event flows are browser-smoke-tested but not automated in pytest",
+    "Accessibility lacks an automated assistive-technology test matrix",
+    "TestClient emits a non-blocking Starlette deprecation warning"
+  ],
+  "status": "completed",
+  "summary": "Independent automated, syntax, packaging, and packaged-runtime checks passed; existing API and redirect behavior remain intact."
+}
