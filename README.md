@@ -19,6 +19,7 @@ make run
 
 Open:
 
+- Web interface: <http://localhost:8000/>
 - API documentation: <http://localhost:8000/docs>
 - Health: <http://localhost:8000/health>
 - Readiness: <http://localhost:8000/ready>
@@ -29,6 +30,16 @@ Production-mode secrets must be changed from the example values. For a container
 ```bash
 ADMIN_API_KEY='replace-me' ANALYTICS_SALT='replace-with-at-least-32-random-chars' docker compose up --build
 ```
+
+## Use the web interface
+
+The dependency-free **Signal Desk** interface serves from the application root. Its public workspace creates a
+short link with an optional alias and expiration, then offers copy and open actions. The operator workspace lists
+links, reveals per-link analytics, and confirms before disabling a link.
+
+In the default local environment, enter `change-me` in Operator access. The key remains only in page memory: it is
+never written to browser storage and is cleared on disconnect or page close. Set `ADMIN_API_KEY` to a unique secret
+outside local development. A separate frontend server or build command is not required.
 
 ## Exercise the API
 
@@ -108,6 +119,7 @@ The generator refuses to overwrite existing audit evidence.
 workflows/sdlc.yaml             Explicit dependency graph, gates, retries, fallbacks
 runs/                           Immutable-style scenario evidence and aggregate metrics
 app/                            Deterministic URL-shortener application
+app/static/                     Dependency-free Signal Desk web interface
 tests/                          Application and orchestration validation
 docs/                           Architecture, API contract, scenarios, testing, summary
 ```

@@ -3,9 +3,11 @@ from __future__ import annotations
 import secrets
 import uuid
 from contextlib import asynccontextmanager
+from pathlib import Path
 
 from fastapi import Depends, FastAPI, Header, HTTPException, Query, Request, Response, status
-from fastapi.responses import JSONResponse, PlainTextResponse, RedirectResponse
+from fastapi.responses import FileResponse, JSONResponse, PlainTextResponse, RedirectResponse
+from fastapi.staticfiles import StaticFiles
 
 from app.cache import LinkCache
 from app.config import Settings
@@ -41,6 +43,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     )
     application.state.database = database
     application.state.link_service = service
+    static_directory = Path(__file__).with_name("static")
 
     @application.middleware("http")
     async def operational_headers(request: Request, call_next):
@@ -52,6 +55,15 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         response.headers["Cache-Control"] = (
             "no-store" if request.url.path.startswith("/api/") else response.headers.get("Cache-Control", "no-store")
         )
+        if request.url.path == "/" or request.url.path.startswith("/_assets"):
+            response.headers["Content-Security-Policy"] = (
+                "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; "
+                "connect-src 'self'; font-src 'self'; object-src 'none'; base-uri 'none'; "
+                "form-action 'self'; frame-ancestors 'none'"
+            )
+            response.headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=()"
+            response.headers["Cross-Origin-Opener-Policy"] = "same-origin"
+            response.headers["X-Frame-Options"] = "DENY"
         return response
 
     def client_ip(request: Request) -> str:
@@ -97,6 +109,12 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     @application.get("/metrics", response_class=PlainTextResponse, tags=["operations"])
     def prometheus_metrics() -> str:
         return metrics.render()
+
+    @application.get("/", include_in_schema=False, response_class=FileResponse)
+    def web_interface() -> FileResponse:
+        return FileResponse(static_directory / "index.html")
+
+    application.mount("/_assets", StaticFiles(directory=static_directory), name="static-assets")
 
     @application.post("/api/v1/links", response_model=LinkResponse, status_code=201, tags=["links"])
     def create_link(

@@ -4,6 +4,9 @@
 
 - **Domain tests:** expiration boundaries and gone-link behavior.
 - **API integration tests:** create, redirect, analytics, idempotency, aliases, URL policy, admin authorization, disablement, operational endpoints, security headers, and rate limiting.
+- **UI integration tests:** application-shell and asset delivery, restrictive UI-only browser headers, static-route
+  precedence over the redirect catch-all, preservation of redirects, and source checks against persistent credential
+  storage and unsafe HTML insertion.
 - **Workflow tests:** complete traversal, combined conditional routing, enforced evidence gates, fan-out/fan-in
   readiness, authorized human approvals, transient retry, node-specific MTTR, downstream invalidation, rejected-gate
   safe stop, verified rollback recording, aggregate metrics, and summary generation.
@@ -23,6 +26,9 @@
 - Bounded headers and analytics strings.
 - Production startup rejects example secrets.
 - No agents or LLM calls in request handling.
+- UI-only restrictive CSP, permissions policy, same-origin opener isolation, protocol-safe generated links, and
+  `textContent` rendering for server-derived values.
+- Operator credentials live in memory only and are cleared on disconnect or page close.
 
 ## Failure scenarios
 
@@ -45,6 +51,10 @@
 - **Synchronous analytics write:** simple and strongly observable, but adds redirect latency. Production scale should enqueue click events and tolerate at-least-once delivery with idempotent aggregation.
 - **In-process rate limiting:** protects one instance only. Use Redis or an edge gateway for distributed enforcement.
 - **API-key administration:** sufficient for a prototype. Production should use identity-aware authentication, scoped authorization, rotation, and audit integration.
+- **Browser operator workspace:** convenient for a local demonstration, but a bearer-style admin key in page memory
+  is not a substitute for authenticated sessions, CSRF protection, role-scoped authorization, and server-side audit.
+- **No frontend build step:** reduces dependencies and deployment complexity, but browser behavior is validated with
+  integration and source-policy tests rather than a full end-to-end browser automation suite.
 - **File-backed workflow state:** atomic and locked on one machine, not a distributed workflow database. Production should use durable leases and transactional state storage.
 - **Native Codex dependency:** custom agent syntax is Codex-specific. The workflow contract and DAG are portable, while Claude Code would need corresponding Markdown agent definitions.
 - **Demo timings:** deterministic scenario outputs produce millisecond timings and should not be treated as capacity measurements.

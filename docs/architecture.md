@@ -7,6 +7,8 @@ The URL shortener is a deterministic data-plane service. Codex and its subagents
 ```mermaid
 flowchart LR
     Client --> API[FastAPI boundary]
+    Browser --> UI[Signal Desk static interface]
+    UI --> API
     API --> Domain[Link service]
     Domain --> Cache[Bounded TTL cache]
     Domain --> Repo[Repository]
@@ -25,6 +27,8 @@ flowchart LR
 ## URL-shortener components
 
 - **FastAPI boundary:** validation, OpenAPI, authentication dependencies, error mapping, request IDs, and security headers.
+- **Static web interface:** same-origin semantic HTML, CSS, and JavaScript for public creation and an operator
+  workspace. Static routes are registered before the short-code catch-all, so redirect semantics remain unchanged.
 - **Link service:** URL and alias policy, secure code generation, expiration semantics, idempotency, salted IP hashing, cache invalidation, and response composition.
 - **Repository:** parameterized SQLite operations and transaction boundaries.
 - **SQLite:** local durable prototype storage with foreign keys, busy timeout, indexes, and WAL mode.
@@ -84,4 +88,16 @@ When an upstream decision changes, the ledger computes descendants, marks affect
 2. **Thin deterministic ledger:** code enforces state and audit properties that prose alone cannot prove.
 3. **Single implementation owner:** avoids concurrent write conflicts while preserving parallel independent reviews.
 4. **SQLite for the local prototype:** minimizes setup and supports transactional correctness; PostgreSQL is the production migration path.
-5. **No user interface:** Swagger UI and committed run artifacts provide the review surface; the assignment does not require a consumer UI.
+5. **Dependency-free interface:** the original Signal Desk visual system uses server-packaged static assets, avoiding
+   a frontend build pipeline while making the prototype easier to demonstrate.
+
+## Web-interface trust boundary
+
+The browser calls the existing JSON API on the same origin. Public creation needs no credential. The operator enters
+the admin key at runtime; JavaScript keeps it in a closure, clears the input immediately, and never uses persistent
+browser storage. API-derived strings enter the document through `textContent`, and generated links accept only HTTP
+or HTTPS protocols. A UI-scoped Content Security Policy disallows inline code, plugins, framing, foreign network
+connections, and foreign assets without affecting FastAPI's Swagger interface.
+
+The route order is deliberate: exact `/`, then mounted `/_assets`, then API routes, and finally `/{code}`. Therefore
+`/` renders the application shell while existing short codes retain the same HTTP 307 behavior.
