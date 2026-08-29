@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agentic SDLC"
+  short_description: "Run governed software delivery workflows"
+  default_prompt: "Use $agentic-sdlc to turn this requirement into a governed, reviewable engineering change."

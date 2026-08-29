@@ -1,0 +1,78 @@
+version: 1
+name: governed-agentic-sdlc
+nodes:
+  intake:
+    agent: requirements_analyst
+    depends_on: []
+    entry_gate: requirement_present
+    exit_gate: normalized_problem_present
+    max_attempts: 1
+  requirements:
+    agent: requirements_analyst
+    depends_on: [intake]
+    exit_gate: acceptance_criteria_testable
+    max_attempts: 2
+  clarification:
+    agent: human
+    depends_on: [requirements]
+    condition: material_ambiguity_present
+    approval: required
+    exit_gate: material_ambiguity_resolved
+    max_attempts: 1
+  codebase_impact:
+    agent: codebase_explorer
+    depends_on: [requirements, clarification]
+    condition: brownfield
+    exit_gate: impacted_paths_evidenced
+    max_attempts: 1
+  architecture:
+    agent: architect
+    depends_on: [requirements, clarification, codebase_impact]
+    exit_gate: design_and_rollback_defined
+    max_attempts: 2
+  design_approval:
+    agent: human
+    depends_on: [architecture]
+    approval: required
+    risk: high
+    exit_gate: explicit_approval_recorded
+    max_attempts: 1
+  implementation:
+    agent: implementer
+    depends_on: [design_approval]
+    exit_gate: diff_and_focused_checks_present
+    rollback: discard_isolated_worktree_or_revert_commit
+    max_attempts: 2
+  test_review:
+    agent: test_reviewer
+    depends_on: [implementation]
+    exit_gate: required_tests_pass
+    max_attempts: 2
+  security_review:
+    agent: security_reviewer
+    depends_on: [implementation]
+    exit_gate: no_unaccepted_high_severity_findings
+    max_attempts: 1
+  documentation_review:
+    agent: documentation_reviewer
+    depends_on: [implementation]
+    exit_gate: public_behavior_documented
+    max_attempts: 1
+  release_review:
+    agent: release_reviewer
+    depends_on: [test_review, security_review, documentation_review]
+    exit_gate: release_evidence_complete
+    max_attempts: 1
+  release_approval:
+    agent: human
+    depends_on: [release_review]
+    approval: required
+    risk: high
+    exit_gate: explicit_approval_recorded
+    max_attempts: 1
+  final_summary:
+    agent: release_reviewer
+    depends_on: [release_approval]
+    exit_gate: final_summary_complete
+    max_attempts: 1
+
