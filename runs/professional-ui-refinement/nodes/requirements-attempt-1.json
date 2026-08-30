@@ -1,0 +1,23 @@
+{
+  "artifacts": [
+    "docs/professional-ui-requirement.md",
+    "app/static/index.html",
+    "app/static/styles.css"
+  ],
+  "assumptions": [
+    "No JavaScript behavior change is necessary"
+  ],
+  "decisions": [
+    "Use neutral surfaces, slate typography, one blue accent, subtle borders/shadows, conventional controls, and compact hierarchy",
+    "Remove dot grids, oversized display text, saturated coral/lime pairing, hard offset shadows, novelty symbols, and decorative orbits"
+  ],
+  "evidence": [
+    "Acceptance preserves creation, copy/open, operator login, analytics, disablement, responsive layout, keyboard focus, security headers, API schemas, and redirects"
+  ],
+  "git_commit": null,
+  "risks": [
+    "Lower visual contrast must still meet accessibility needs"
+  ],
+  "status": "completed",
+  "summary": "Defined testable criteria for a restrained professional redesign with full functional parity."
+}

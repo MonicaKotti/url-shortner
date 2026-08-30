@@ -1,0 +1,32 @@
+{
+  "artifacts": [
+    "app/static/index.html",
+    "app/static/styles.css",
+    "app/static/app.js",
+    "app/main.py",
+    "tests/test_ui.py",
+    "tests/test_api.py"
+  ],
+  "assumptions": [
+    "UI and API remain same-origin"
+  ],
+  "decisions": [
+    "Accepted the security gate for a presentation-only refinement",
+    "Changed the potentially broad Secure redirect label to URL policy active"
+  ],
+  "evidence": [
+    "pytest: exit=0; 21 passed",
+    "ruff: exit=0",
+    "security-sensitive JavaScript/backend files unchanged",
+    "no unsafe HTML sinks or browser storage",
+    "runtime CSP and authorization checks passed",
+    "all target=_blank links retain noopener noreferrer"
+  ],
+  "git_commit": null,
+  "risks": [
+    "MEDIUM: inherited operator model remains a shared prototype API key",
+    "LOW: Swagger intentionally remains outside the UI CSP"
+  ],
+  "status": "completed",
+  "summary": "No high-severity finding; the markup/CSS redesign preserved CSP, DOM safety, credential handling, URL validation, authorization, and disable confirmation."
+}
