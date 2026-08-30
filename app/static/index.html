@@ -3,136 +3,149 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Create compact links and inspect their signal.">
+    <meta name="description" content="Create, manage, and measure short links with Signal Desk.">
     <title>Signal Desk · URL shortener</title>
     <link rel="stylesheet" href="/_assets/styles.css">
     <script src="/_assets/app.js" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
+
     <header class="site-header">
-      <a class="brand" href="/" aria-label="Signal Desk home">
-        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
-        <span>Signal Desk</span>
-      </a>
-      <nav aria-label="Primary navigation">
-        <a href="#shorten">Shorten</a>
-        <a href="#operator">Operator</a>
-        <a href="/docs">API docs</a>
-      </nav>
+      <div class="header-inner">
+        <a class="brand" href="/" aria-label="Signal Desk home">
+          <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span>Signal Desk</span>
+        </a>
+        <nav aria-label="Primary navigation">
+          <a href="#shorten">Create link</a>
+          <a href="#operator">Workspace</a>
+          <a class="docs-link" href="/docs">API documentation</a>
+        </nav>
+      </div>
     </header>
 
     <main id="main">
       <section class="hero" aria-labelledby="hero-title">
-        <div class="hero-copy">
-          <p class="eyebrow"><span></span> Useful links, without the noise</p>
-          <h1 id="hero-title">Make every<br><em>click count.</em></h1>
-          <p class="lede">Turn long, unwieldy addresses into memorable signals. Fast to share. Easy to track.</p>
-          <div class="hero-notes" aria-label="Product benefits">
-            <span>↗ Instant redirect</span>
-            <span>◎ Private analytics</span>
-            <span>⌁ Custom aliases</span>
+        <div class="hero-inner">
+          <div class="hero-copy">
+            <p class="eyebrow">Link management for focused teams</p>
+            <h1 id="hero-title">Short links.<br><span>Clear insights.</span></h1>
+            <p class="lede">Create reliable short URLs, understand engagement, and manage every destination from one simple workspace.</p>
+            <ul class="hero-notes" aria-label="Product benefits">
+              <li><span aria-hidden="true">✓</span> Custom short links</li>
+              <li><span aria-hidden="true">✓</span> Private click analytics</li>
+              <li><span aria-hidden="true">✓</span> Expiration controls</li>
+            </ul>
           </div>
-        </div>
 
-        <div class="shortener-wrap" id="shorten">
-          <div class="orbit orbit-one" aria-hidden="true"></div>
-          <div class="orbit orbit-two" aria-hidden="true"></div>
-          <form class="shortener-card" id="shorten-form" novalidate>
-            <div class="card-kicker"><span>01</span> Create a signal</div>
-            <label for="target-url">Destination URL</label>
-            <div class="primary-field">
-              <span aria-hidden="true">↗</span>
+          <div class="shortener-wrap" id="shorten">
+            <form class="shortener-card" id="shorten-form" novalidate>
+              <div class="card-heading">
+                <div>
+                  <p class="card-kicker">Create a short link</p>
+                  <p>Paste a destination and customize it if you need to.</p>
+                </div>
+                <span class="secure-label">Secure redirect</span>
+              </div>
+
+              <label for="target-url">Destination URL</label>
               <input id="target-url" name="url" type="url" inputmode="url" autocomplete="url"
-                placeholder="https://your-very-long-link.com" required>
-            </div>
+                placeholder="https://example.com/your-long-link" required>
 
-            <div class="form-grid">
-              <div>
-                <label for="custom-alias">Custom alias <small>optional</small></label>
-                <div class="prefixed-field">
-                  <span>/</span>
-                  <input id="custom-alias" name="custom_alias" type="text" minlength="4" maxlength="32"
-                    pattern="[A-Za-z0-9_-]+" autocomplete="off" placeholder="launch-day">
+              <div class="form-grid">
+                <div>
+                  <label for="custom-alias">Custom alias <small>Optional</small></label>
+                  <div class="prefixed-field">
+                    <span>/</span>
+                    <input id="custom-alias" name="custom_alias" type="text" minlength="4" maxlength="32"
+                      pattern="[A-Za-z0-9_-]+" autocomplete="off" placeholder="product-launch">
+                  </div>
+                </div>
+                <div>
+                  <label for="expires-at">Expiration <small>Optional</small></label>
+                  <input id="expires-at" name="expires_at" type="datetime-local">
                 </div>
               </div>
-              <div>
-                <label for="expires-at">Expires <small>optional</small></label>
-                <input id="expires-at" name="expires_at" type="datetime-local">
-              </div>
-            </div>
 
-            <button class="action-button" id="create-button" type="submit">
-              <span>Shorten link</span><b aria-hidden="true">→</b>
-            </button>
-            <p class="form-status" id="create-status" role="status" aria-live="polite"></p>
+              <button class="action-button" id="create-button" type="submit">
+                <span>Create short link</span><b aria-hidden="true">→</b>
+              </button>
+              <p class="form-status" id="create-status" role="status" aria-live="polite"></p>
 
-            <section class="result" id="result" aria-labelledby="result-title" tabindex="-1" hidden>
-              <div>
-                <p id="result-title">Your signal is live</p>
-                <a id="short-url" href="#" target="_blank" rel="noopener noreferrer"></a>
-              </div>
-              <div class="result-actions">
-                <button class="secondary-button" id="copy-button" type="button">Copy</button>
-                <a class="icon-button" id="open-link" href="#" target="_blank" rel="noopener noreferrer"
-                  aria-label="Open shortened link">↗</a>
-              </div>
-            </section>
-          </form>
+              <section class="result" id="result" aria-labelledby="result-title" tabindex="-1" hidden>
+                <div>
+                  <p id="result-title">Your short link is ready</p>
+                  <a id="short-url" href="#" target="_blank" rel="noopener noreferrer"></a>
+                </div>
+                <div class="result-actions">
+                  <button class="secondary-button" id="copy-button" type="button">Copy</button>
+                  <a class="icon-button" id="open-link" href="#" target="_blank" rel="noopener noreferrer"
+                    aria-label="Open shortened link">↗</a>
+                </div>
+              </section>
+            </form>
+          </div>
         </div>
       </section>
 
       <section class="operator-section" id="operator" aria-labelledby="operator-title">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow"><span></span> Operations console</p>
-            <h2 id="operator-title">Read the signal.</h2>
-          </div>
-          <p>Manage active links and inspect click activity. The admin key exists only in this open page.</p>
-        </div>
-
-        <div class="operator-shell">
-          <form class="key-panel" id="admin-form" autocomplete="off">
+        <div class="operator-inner">
+          <div class="section-heading">
             <div>
-              <span class="status-dot" aria-hidden="true"></span>
-              <strong>Operator access</strong>
-              <p id="key-help">Enter the local admin key to load links.</p>
+              <p class="eyebrow">Operator workspace</p>
+              <h2 id="operator-title">Manage every link in one place.</h2>
             </div>
-            <div class="key-controls">
-              <label class="sr-only" for="admin-key">Admin key</label>
-              <input id="admin-key" type="password" autocomplete="new-password" aria-describedby="key-help"
-                placeholder="Admin key" required>
-              <button class="compact-button" id="connect-button" type="submit">Connect</button>
-              <button class="text-button" id="disconnect-button" type="button" hidden>Disconnect</button>
-            </div>
-          </form>
+            <p>Review destinations, inspect click activity, and disable links when they are no longer needed.</p>
+          </div>
 
-          <p class="operator-status" id="operator-status" role="status" aria-live="polite"></p>
-          <div class="link-list" id="link-list" aria-label="Managed links"></div>
-          <div class="empty-state" id="empty-state">
-            <span aria-hidden="true">⌁</span>
-            <h3>Waiting for a signal</h3>
-            <p>Connect as an operator to see shortened links and analytics.</p>
+          <div class="operator-shell">
+            <form class="key-panel" id="admin-form" autocomplete="off">
+              <div class="key-copy">
+                <span class="status-dot" aria-hidden="true"></span>
+                <div>
+                  <strong>Operator access</strong>
+                  <p id="key-help">Enter your admin key. It stays only in this browser tab.</p>
+                </div>
+              </div>
+              <div class="key-controls">
+                <label class="sr-only" for="admin-key">Admin key</label>
+                <input id="admin-key" type="password" autocomplete="new-password" aria-describedby="key-help"
+                  placeholder="Enter admin key" required>
+                <button class="compact-button" id="connect-button" type="submit">Connect</button>
+                <button class="text-button" id="disconnect-button" type="button" hidden>Disconnect</button>
+              </div>
+            </form>
+
+            <p class="operator-status" id="operator-status" role="status" aria-live="polite"></p>
+            <div class="link-list" id="link-list" aria-label="Managed links"></div>
+            <div class="empty-state" id="empty-state">
+              <span class="empty-icon" aria-hidden="true">↗</span>
+              <h3>Your workspace is ready</h3>
+              <p>Connect with an admin key to view links and analytics.</p>
+            </div>
           </div>
         </div>
       </section>
     </main>
 
     <footer>
-      <a class="brand footer-brand" href="/" aria-label="Signal Desk home">
-        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span>Signal Desk</span>
-      </a>
-      <p>Deterministic by design. <span>Built for clear redirects.</span></p>
-      <a href="/health">System status <i aria-hidden="true"></i></a>
+      <div class="footer-inner">
+        <a class="brand footer-brand" href="/" aria-label="Signal Desk home">
+          <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span>Signal Desk</span>
+        </a>
+        <p>Reliable short links with transparent operations.</p>
+        <a class="status-link" href="/health"><i aria-hidden="true"></i> System operational</a>
+      </div>
     </footer>
 
     <dialog id="disable-dialog" aria-labelledby="dialog-title">
       <form method="dialog">
-        <p class="card-kicker"><span>!</span> Destructive action</p>
+        <span class="dialog-icon" aria-hidden="true">!</span>
         <h2 id="dialog-title">Disable this link?</h2>
         <p id="dialog-copy"></p>
         <div class="dialog-actions">
-          <button class="secondary-button" value="cancel">Keep active</button>
+          <button class="secondary-button" value="cancel">Cancel</button>
           <button class="danger-button" id="confirm-disable" value="confirm">Disable link</button>
         </div>
       </form>

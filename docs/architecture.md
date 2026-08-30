@@ -88,8 +88,8 @@ When an upstream decision changes, the ledger computes descendants, marks affect
 2. **Thin deterministic ledger:** code enforces state and audit properties that prose alone cannot prove.
 3. **Single implementation owner:** avoids concurrent write conflicts while preserving parallel independent reviews.
 4. **SQLite for the local prototype:** minimizes setup and supports transactional correctness; PostgreSQL is the production migration path.
-5. **Dependency-free interface:** the original Signal Desk visual system uses server-packaged static assets, avoiding
-   a frontend build pipeline while making the prototype easier to demonstrate.
+5. **Dependency-free interface:** Signal Desk uses a restrained professional visual system and server-packaged
+   static assets, avoiding a frontend build pipeline while keeping the prototype easy to demonstrate.
 
 ## Web-interface trust boundary
 
