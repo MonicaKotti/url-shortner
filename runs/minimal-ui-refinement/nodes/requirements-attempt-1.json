@@ -1,0 +1,23 @@
+{
+  "artifacts": [
+    "docs/minimal-ui-requirement.md",
+    "app/static/index.html",
+    "app/static/styles.css"
+  ],
+  "assumptions": [
+    "No JavaScript behavior changes are required"
+  ],
+  "decisions": [
+    "Remove marketing slogans, benefit lists, badges, novelty symbols, gradients, promotional operator treatment, and footer copy",
+    "Retain all functional fields and workspace controls"
+  ],
+  "evidence": [
+    "Acceptance preserves all 28 DOM IDs, creation/copy/open, operator/list/analytics/disable, live regions, dialog, security policy, API contracts, and responsive behavior"
+  ],
+  "git_commit": null,
+  "risks": [
+    "Mobile compression must retain 44px controls and readability"
+  ],
+  "status": "completed",
+  "summary": "Defined minimal visual and functional parity acceptance criteria."
+}

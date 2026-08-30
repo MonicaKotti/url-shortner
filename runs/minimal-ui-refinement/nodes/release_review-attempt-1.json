@@ -1,0 +1,38 @@
+{
+  "artifacts": [
+    "app/static/index.html",
+    "app/static/styles.css",
+    "tests/test_ui.py",
+    "docs/minimal-ui-requirement.md",
+    "docs/architecture.md",
+    "docs/final-engineering-summary.md"
+  ],
+  "assumptions": [
+    "Immediate target is local demonstration"
+  ],
+  "decisions": [
+    "Recommend local prototype and interview release",
+    "Accept functional parity with unchanged JavaScript/backend/API",
+    "Rollback by reverting e64e7cf then 46538e6"
+  ],
+  "evidence": [
+    "Git lineage: 93c030e -> 46538e6 -> e64e7cf",
+    "ruff: exit=0",
+    "pytest: exit=0; 22 passed",
+    "coverage: 92%",
+    "node --check: exit=0",
+    "all 28 IDs and 20 JavaScript hooks preserved",
+    "runtime assets/docs/health returned 200",
+    "browser desktop/360px zero overflow and no console errors",
+    "descriptive Open label and 44px targets verified",
+    "skill validation passed"
+  ],
+  "git_commit": null,
+  "risks": [
+    "MEDIUM: shared-key operator authentication remains prototype-only",
+    "LOW: minimal quality is subjective",
+    "LOW: full end-to-end and assistive-technology matrices remain manual"
+  ],
+  "status": "completed",
+  "summary": "Recommended release for local prototype and interview demonstration; the minimal interface preserves behavior and resolves review findings with no blocker or high-severity issue."
+}

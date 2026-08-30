@@ -1,0 +1,25 @@
+{
+  "artifacts": [
+    "app/static/index.html",
+    "app/static/styles.css",
+    "app/static/app.js",
+    "tests/test_ui.py",
+    "docs/architecture.md"
+  ],
+  "assumptions": [
+    "Current static packaging remains unchanged"
+  ],
+  "decisions": [
+    "Preserve every existing ID and JavaScript-generated state class",
+    "Do not change backend or network contracts"
+  ],
+  "evidence": [
+    "All behavior uses stable IDs and generated classes in app.js; backend and API are unaffected"
+  ],
+  "git_commit": null,
+  "risks": [
+    "Generated analytics/link classes must remain styled"
+  ],
+  "status": "completed",
+  "summary": "Change impact is isolated to static markup, CSS, focused assertions, and presentation documentation."
+}

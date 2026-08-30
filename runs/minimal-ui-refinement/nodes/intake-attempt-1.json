@@ -1,0 +1,20 @@
+{
+  "artifacts": [
+    "docs/minimal-ui-requirement.md"
+  ],
+  "assumptions": [
+    "Minimal does not remove optional fields or operator capabilities"
+  ],
+  "decisions": [
+    "Remove only presentation elements that do not help create or manage links"
+  ],
+  "evidence": [
+    "Reviewed current live page and static interaction hooks"
+  ],
+  "git_commit": null,
+  "risks": [
+    "Removing functional IDs would break interactions"
+  ],
+  "status": "completed",
+  "summary": "Normalized the request as a function-first simplification preserving all workflows."
+}

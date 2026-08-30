@@ -1,0 +1,25 @@
+{
+  "artifacts": [
+    "docs/minimal-ui-requirement.md",
+    "app/static/index.html",
+    "app/static/styles.css"
+  ],
+  "assumptions": [
+    "Signal Desk remains the product name"
+  ],
+  "decisions": [
+    "Use no gradients, patterns, hard shadows, transforms, badges, or decorative animation",
+    "Keep green/red only for semantic status",
+    "Retain visible focus and reduced-motion behavior",
+    "Rollback by reverting one isolated commit"
+  ],
+  "evidence": [
+    "Design specifies #F8FAFC canvas, white surfaces, #172033 text, muted #3157D5 accent, 1px dividers, 6-8px radii, minimal shadow, 36px max title, and 720px stack breakpoint"
+  ],
+  "git_commit": null,
+  "risks": [
+    "Minimal presentation can feel sparse if spacing hierarchy is inconsistent"
+  ],
+  "status": "completed",
+  "summary": "Designed a single-column 960px minimal layout with compact header, focused form, quiet result, and neutral management workspace."
+}

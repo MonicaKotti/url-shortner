@@ -1,10 +1,10 @@
 {
-  "mean_end_to_end_latency_seconds": 2427.799,
+  "mean_end_to_end_latency_seconds": 2112.63,
   "mean_time_to_recovery_seconds": 0.003,
-  "node_attempts": 61,
+  "node_attempts": 73,
   "replan_count": 1,
   "retry_count": 1,
-  "retry_frequency": 0.0164,
+  "retry_frequency": 0.0137,
   "rollback_count": 0,
   "rollback_frequency": 0.0,
   "runs": [
@@ -65,6 +65,20 @@
       "successful": true
     },
     {
+      "end_to_end_latency_seconds": 536.789,
+      "mttr_seconds": null,
+      "node_attempts": 12,
+      "replan_count": 0,
+      "retry_count": 0,
+      "retry_frequency": 0.0,
+      "rollback_count": 0,
+      "rollback_frequency": 0.0,
+      "run_id": "minimal-ui-refinement",
+      "safe_stop_count": 0,
+      "status": "completed",
+      "successful": true
+    },
+    {
       "end_to_end_latency_seconds": 735.633,
       "mttr_seconds": null,
       "node_attempts": 12,
@@ -82,6 +96,6 @@
   "safe_stop_count": 0,
   "safe_stop_frequency": 0.0,
   "success_rate": 1.0,
-  "terminal_runs": 5,
-  "total_runs": 5
+  "terminal_runs": 6,
+  "total_runs": 6
 }

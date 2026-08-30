@@ -1,0 +1,33 @@
+{
+  "artifacts": [
+    "app/static/index.html",
+    "app/static/styles.css",
+    "tests/test_ui.py",
+    "docs/minimal-ui-requirement.md",
+    "docs/architecture.md",
+    "docs/final-engineering-summary.md"
+  ],
+  "assumptions": [
+    "Optional fields and operator capabilities remain essential"
+  ],
+  "decisions": [
+    "Removed marketing hero content, benefits, badges, novelty symbols, gradients, decorative dashboard treatment, and promotional footer copy",
+    "Preserved all interaction IDs and app.js behavior",
+    "Used a single 960px column and one muted blue accent"
+  ],
+  "evidence": [
+    "ruff: exit=0",
+    "pytest: exit=0; 22 passed",
+    "coverage: 92%",
+    "node --check: exit=0",
+    "browser: desktop and 360px layouts had zero horizontal overflow and no console errors",
+    "minimality test rejects marketing benefit/orbit markup and CSS gradients"
+  ],
+  "git_commit": "46538e6",
+  "risks": [
+    "Minimal design is partly subjective",
+    "Browser-native date and dialog controls vary"
+  ],
+  "status": "completed",
+  "summary": "Reduced Signal Desk to a compact header, focused shortening form, quiet result state, direct management workspace, and minimal footer while preserving every interaction."
+}
