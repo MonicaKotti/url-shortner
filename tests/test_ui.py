@@ -55,3 +55,25 @@ def test_frontend_avoids_persistent_secrets_and_unsafe_html_sinks() -> None:
     assert ".innerHTML" not in script
     assert "X-Admin-Key" in script
     assert "textContent" in script
+
+
+def test_interface_stays_minimal_and_preserves_interaction_hooks(client: TestClient) -> None:
+    page = client.get("/").text
+    stylesheet = client.get("/_assets/styles.css").text
+
+    for element_id in (
+        "shorten-form",
+        "target-url",
+        "custom-alias",
+        "expires-at",
+        "result",
+        "admin-form",
+        "link-list",
+        "disable-dialog",
+    ):
+        assert f'id="{element_id}"' in page
+
+    assert "hero-notes" not in page
+    assert "orbit" not in page
+    assert "linear-gradient" not in stylesheet
+    assert "radial-gradient" not in stylesheet
