@@ -66,7 +66,7 @@ input:focus { border-color: var(--accent); outline: 0; box-shadow: 0 0 0 3px rgb
 .result a { color: var(--text); overflow-wrap: anywhere; font-size: .9rem; font-weight: 620; }
 .result-actions, .link-actions { display: flex; gap: .5rem; flex-shrink: 0; }
 
-.secondary-button, .compact-button, .danger-button { min-height: 40px; padding: .52rem .75rem; color: var(--text); background: var(--surface); border: 1px solid var(--line); border-radius: 6px; font-size: .8rem; font-weight: 600; text-decoration: none; cursor: pointer; }
+.secondary-button, .compact-button, .danger-button { min-height: 44px; padding: .52rem .75rem; color: var(--text); background: var(--surface); border: 1px solid var(--line); border-radius: 6px; font-size: .8rem; font-weight: 600; text-decoration: none; cursor: pointer; }
 .secondary-button:hover { background: var(--subtle); }
 .compact-button { color: white; background: var(--accent); border-color: var(--accent); }
 .danger-button { color: white; background: var(--danger); border-color: var(--danger); }
@@ -81,7 +81,7 @@ input:focus { border-color: var(--accent); outline: 0; box-shadow: 0 0 0 3px rgb
 .status-dot { width: 8px; height: 8px; flex: 0 0 auto; background: #a1a9b8; border-radius: 50%; }
 .status-dot.connected { background: var(--success); }
 .key-controls { display: flex; gap: .5rem; }
-.key-controls input { width: 220px; min-height: 40px; }
+.key-controls input { width: 220px; min-height: 44px; }
 .text-button { padding: .5rem; color: var(--muted); background: transparent; border: 0; font-size: .8rem; cursor: pointer; }
 .text-button:hover { color: var(--text); }
 
