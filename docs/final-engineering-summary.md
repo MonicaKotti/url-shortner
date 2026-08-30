@@ -23,7 +23,7 @@ The orchestration layer combines declarative configuration with deterministic en
 ## Validation
 
 - Ruff passes for all executable Python sources.
-- The complete 17-test suite passes with application coverage reported separately by the command in `README.md`.
+- The complete 21-test suite passes with application coverage reported separately by the command in `README.md`.
 - The skill-package validator passes.
 - Three scenario state files finish in `completed` status.
 - Scenario ledgers compare the pre-application governance baseline `c674e01` with implementation commit `7f31ecf`;
